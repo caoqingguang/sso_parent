@@ -1,0 +1,8 @@
+/*
+!.gitignore
+!pom.xml
+!/src
+!/sso_entity
+!/sso_remote
+!/sso_service
+!/sso_web
