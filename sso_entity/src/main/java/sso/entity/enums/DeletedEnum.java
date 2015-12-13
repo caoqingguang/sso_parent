@@ -1,12 +1,11 @@
 package sso.entity.enums;
 
-public enum RoleTypeEnum {
-	SUPPERADMIN(0,"超级用户"),
-	ADMIN(1,"admin用户"),
-	NORMAL(2,"普通用户");
+public enum DeletedEnum {
+	DELETED(1,"已删"),
+	NORMAL(2,"正常");
 	private final Integer value;
 	private final String name;
-	private RoleTypeEnum(Integer value, String name) {
+	private DeletedEnum(Integer value, String name) {
 		this.value = value;
 		this.name = name;
 	}
@@ -16,5 +15,4 @@ public enum RoleTypeEnum {
 	public String getName() {
 		return name;
 	}
-	
 }

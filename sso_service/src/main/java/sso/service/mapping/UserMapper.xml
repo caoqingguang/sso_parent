@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="sso.service.mapper.IUserMapper">
+	<sql id="userBase">
+		id,userName,passWord,token,info,resetHint,resetPw,email,phone,crTime,deleted
+	</sql>
+	<resultMap id="userMap" type="sso.entity.User">
+		<id column="id" property="id" jdbcType="BIGINT"/>
+	    <result column="userName" property="userName" jdbcType="VARCHAR" />
+		<result column="passWord" property="passWord" jdbcType="VARCHAR" />
+		<result column="token" property="token" jdbcType="VARCHAR" />
+		<result column="info" property="info" jdbcType="VARCHAR" />
+		<result column="resetHint" property="resetHint" jdbcType="VARCHAR" />
+		<result column="resetPw" property="resetPw" jdbcType="VARCHAR" />
+		<result column="email" property="email" jdbcType="VARCHAR" />
+		<result column="phone" property="phone" jdbcType="VARCHAR" />
+		<result column="crTime" property="crTime" jdbcType="DATE" />
+		<result column="deleted" property="deleted" jdbcType="INTEGER" />
+	</resultMap>
+	
+	<select id="countAll" resultType="int">
+		select count(1) from user 
+	</select>
+	<select id="selectUserById" resultMap="userMap">
+		select * from user where id=#{id,jdbcType=BIGINT}
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
