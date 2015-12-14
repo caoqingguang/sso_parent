@@ -1,0 +1,15 @@
+#all_header{
+	height:100px;
+	background:#ccc;
+}
+#all_left{
+	width:100px;
+}
+#all_data{
+	padding:5px;
+	background:#eee;
+}
+#all_footer{
+	height:50px;
+	background:#fcc;
+}

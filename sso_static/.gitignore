@@ -2,6 +2,4 @@
 !.gitignore
 !pom.xml
 !/common
-!/css
-!/image
-!/js
+!/sso
