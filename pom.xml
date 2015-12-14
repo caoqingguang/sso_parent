@@ -181,5 +181,6 @@
   	<module>sso_service</module>
   	<module>sso_remote</module>
   	<module>sso_web</module>
+  	<module>sso_static</module>
   </modules>
 </project>
