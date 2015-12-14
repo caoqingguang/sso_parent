@@ -27,6 +27,9 @@
 <!-- 	<plugins>
 		<plugin interceptor="cn.vko.common.utils.mybatis.GenCreateInterceptor" />
 	</plugins> -->
+	<plugins>
+		<plugin interceptor="sso.util.pager.PagerHelper" />
+	</plugins>
 
 	<mappers>
 		<mapper resource="sso/service/mapping/UserMapper.xml"/>

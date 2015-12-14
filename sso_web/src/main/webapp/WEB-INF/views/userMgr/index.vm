@@ -1,0 +1,40 @@
+<html>
+	<head>
+		#parse("./common/common.vm")
+        <title>userMgr VM</title>
+		<script type="text/javascript" src="${staticPath}/sso/js/userMgr/userMgr.js"></script>
+	</head>
+	<body class="easyui-layout">   
+        <!--header 顶部导航栏 -->
+		<div id="all_header" data-options="region:'north',split:false,border:false">
+			<div>
+				<h1 id="header-title">用户管理</h1>
+			</div>
+		</div>
+		<!--left  左侧导航栏 -->
+        <div id="all_left" data-options="region:'west',split:false,border:false">this is nav</div>   
+		<!--center  中间业务区 -->
+		<div id="all_data" data-options="region:'center',border:false">
+			<div id="data-query">
+				<input type="text" placeholder="用户名称"/>
+				<input type="text" placeholder="邮箱"/>
+				<input type="text" placeholder="手机"/>
+				<input type="button" value="查询"/>
+				<input type="button" value="添加用户" onclick="showEditUser('new');"/>
+			</div>
+			<div id="data-view">
+				<table id="list"></table>
+			</div>
+		</div> 
+		<!--footer  底部-->
+        <div id="all_footer" data-options="region:'south',split:false,border:false">this is vko footer</div>
+<!--对话框 编辑用户角色-->
+<div id="dlg-modUserRole" class="easyui-dialog" style="height:200;width:200;" data-options="closed:true">
+	编辑用户角色
+</div>
+<!--对话框 添加用户-->
+<div id="dlg-editUser" class="easyui-dialog" style="height:200;width:200;" data-options="closed:true">
+	增加用户
+</div>
+	</body>  
+</html>

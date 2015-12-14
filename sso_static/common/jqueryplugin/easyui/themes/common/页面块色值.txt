@@ -1,0 +1,17 @@
+tab-menu: 
+	font: 16px #666666 Î¢ÈíÑÅºÚ
+search-color: 
+	bg #f3f3f3
+	font: #666666s
+left-menu-bg:#e5e9ef
+table:
+	font£º12px ËÎÌå
+	th: #999999 bold
+	td: #333333
+	th-border: #d8d8d8  th-top: blur
+	td-border: #e9e9e9
+pagination:
+	font:11px #464646 Tahoma
+
+
+	

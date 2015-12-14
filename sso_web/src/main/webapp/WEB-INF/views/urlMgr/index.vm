@@ -1,0 +1,10 @@
+<html>
+	<head>
+		#parse("./common/common.vm")
+        <title>urlMgr VM</title>
+	</head>
+	<body>
+		<h1>urlMgr</h1>
+		<div>hello this is urlMgr page</div>
+	</body>
+</html>

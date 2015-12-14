@@ -1,0 +1,7 @@
+<script type="text/javascript" src="${staticPath}/job2/js/login.js"></script>
+<div>
+<a href="javascript:logout();" style="float:right;">退出</a>
+<h1>welcome job center</h1>
+</div>
+
+

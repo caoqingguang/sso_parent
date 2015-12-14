@@ -1,0 +1,19 @@
+<html>
+	<head>
+		#parse("./common/common.vm")
+        <title>userMgr VM</title>
+		<script type="text/javascript" src="${staticPath}/sso/js/userMgr/userMgr.js"></script>
+	</head>
+	<body class="easyui-layout">   
+        <!--header 顶部导航栏 -->
+		<div id="all_header" data-options="region:'north',split:false,border:false">this is vko header</div>
+		<!--left  左侧导航栏 -->
+        <div id="all_left" data-options="region:'west',split:false,border:false">this is nav</div>   
+		<!--center  中间业务区 -->
+		<div id="all_data" data-options="region:'center',border:false">
+			<table id="list"></table>
+		</div> 
+		<!--footer  底部-->
+        <div id="all_footer" data-options="region:'south',split:false,border:false">this is vko footer</div> 
+	</body>  
+</html>

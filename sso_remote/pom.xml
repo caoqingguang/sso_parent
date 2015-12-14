@@ -20,6 +20,11 @@
     	<artifactId>sso_entity</artifactId>
     	<version>${sso.version}</version>
   	</dependency>
+  	<dependency>
+		<groupId>cqg.sso</groupId>
+    	<artifactId>sso_util</artifactId>
+    	<version>${sso.version}</version>
+  	</dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
