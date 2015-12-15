@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/util 
+		http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+	
+ 	<bean id="primarykeyGenerator" class="sso.util.primarykey.IdHelperCenter">
+ 		<property name="redis" ref="redisTemplate"/>
+		<property name="idHelperList" ref="idHelperList"/>	
+	</bean>
+	<util:list id="idHelperList">
+		<bean  class="sso.util.primarykey.IdHelper">
+			<property name="dbName" value="sso"/>
+			<property name="tbName" value="user"/>
+			<property name="minValue" value="1000"/>
+			<property name="applyNum" value="10"/>
+			<property name="initSql" value="default"/>
+			<property name="dataSource" ref="dataSource"/>
+		</bean>
+<!-- 		<bean  class="cn.vko.common.utils.dbutilsex.IdHelper">
+			<property name="dbName" value="****"/>
+			<property name="tbName" value="****"/>
+			<property name="applyNum" value="****"/>
+			<property name="minValue" value="****"/>
+			<property name="initSql" value="****"/>
+			<property name="dataSource" ref="****"/>
+		</bean> -->
+	</util:list>
+
+</beans>

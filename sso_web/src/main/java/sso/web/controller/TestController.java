@@ -1,22 +1,24 @@
 package sso.web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import sso.entity.User;
+import sso.service.mapper.ISysMapper;
 import sso.service.mapper.IUserMapper;
-import sso.util.pager.PagerHelper;
-import sso.util.pager.PagerRequest;
 
 @RequestMapping("test")
 @Controller
 public class TestController {
 	
 	@Autowired
+	private RedisTemplate<String, String> jedisTemplate;
+	@Autowired
 	private IUserMapper userMapper;
+	@Autowired
+	private ISysMapper sysMapper;
 	@RequestMapping("test")
 	public Object test(){
 		return "test";
@@ -25,23 +27,14 @@ public class TestController {
 	@RequestMapping("count")
 	@ResponseBody
 	public Object count(){
-		return this.userMapper.countAll();
+		return this.sysMapper.countAll();
 	}
 	
 	@RequestMapping("select")
 	@ResponseBody
-	public Object select(Long id){
-		return this.userMapper.selectUserById(id);
+	public Object select(String key){
+		return this.sysMapper.selectSysList(null);
 	}
 	
-	@RequestMapping("list")
-	@ResponseBody
-	public Object list(@ModelAttribute PagerRequest pager){
-		System.out.println(pager);
-		//PagerModel<User> model=pager.genModel(User.class);
-		PagerHelper.setPagerRequest(pager);
-		this.userMapper.selectUserList();
-		return PagerHelper.getPagerResponse(User.class);
-	}
 	
 }

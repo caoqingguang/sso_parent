@@ -13,3 +13,25 @@
 	height:50px;
 	background:#fcc;
 }
+
+#win-maxmin{
+	width:100px;
+	position:fixed;
+	right:20px;
+	top:10px;
+	z-index:100;
+}
+#win-maxmin .current{
+	background:yellow;
+	opacity:0.7;
+}
+.win-maxmin-btn{
+	background:green;
+	border-radius:10px 10px 10px 10px;
+	opacity:0.3;
+}
+.win-maxmin-btn:hover{
+	background:yellow;
+	border:2px solid red;
+	opacity:1;
+}

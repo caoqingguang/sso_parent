@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="sso.service.mapper.ISysMapper">
+	<sql id="sysBase">
+		id,sysName,sysChName,indexStr,defUrl,sysLev,sysType,crTime,regPw,regPrefix,regNullUrl
+	</sql>
+	<resultMap id="sysMap" type="sso.entity.Sys">
+		<id column="id" property="id" jdbcType="BIGINT"/>
+	    <result column="sysName" property="sysName" jdbcType="VARCHAR" />
+		<result column="sysChName" property="sysChName" jdbcType="VARCHAR" />
+		<result column="indexStr" property="indexStr" jdbcType="VARCHAR" />
+		<result column="defUrl" property="defUrl" jdbcType="VARCHAR" />
+		<result column="sysLev" property="sysLev" jdbcType="INTEGER" />
+		<result column="sysType" property="sysType" jdbcType="INTEGER" />
+		<result column="crTime" property="crTime" jdbcType="DATE" />
+		<result column="regPw" property="regPw" jdbcType="VARCHAR" />
+		<result column="regPrefix" property="regPrefix" jdbcType="VARCHAR" />
+		<result column="regNullUrl" property="regNullUrl" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<select id="countAll" resultType="int">
+		select count(1) from sys 
+	</select>
+	<select id="selectSysById" resultMap="sysMap">
+		select * from Sys where id=#{id,jdbcType=BIGINT}
+	</select>
+	<select id="selectSysList" resultMap="sysMap">
+		select * from sys
+		where 1=1
+		<if test="id !=null">
+			and id=#{id,jdbcType=BIGINT}
+		</if>
+		<if test="userName !=null">
+			and userName like "%"#{userName,jdbcType=VARCHAR}"%"
+		</if>
+		<if test="email !=null">
+			and email like "%"#{email,jdbcType=VARCHAR}"%"
+		</if>
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

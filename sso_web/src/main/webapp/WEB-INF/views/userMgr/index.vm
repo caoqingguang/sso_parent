@@ -4,7 +4,8 @@
         <title>userMgr VM</title>
 		<script type="text/javascript" src="${staticPath}/sso/js/userMgr/userMgr.js"></script>
 	</head>
-	<body class="easyui-layout">   
+	<body class="easyui-layout">
+
         <!--header 顶部导航栏 -->
 		<div id="all_header" data-options="region:'north',split:false,border:false">
 			<div>
@@ -16,11 +17,14 @@
 		<!--center  中间业务区 -->
 		<div id="all_data" data-options="region:'center',border:false">
 			<div id="data-query">
-				<input type="text" placeholder="用户名称"/>
-				<input type="text" placeholder="邮箱"/>
-				<input type="text" placeholder="手机"/>
-				<input type="button" value="查询"/>
-				<input type="button" value="添加用户" onclick="showEditUser('new');"/>
+				<form id="search-form">
+    				<input type="text" name="id" placeholder="用户id"/>
+    				<input type="text" name="userName" placeholder="用户名称"/>
+    				<input type="text" name="email" placeholder="邮箱"/>
+    				<input type="text" name="phone" placeholder="手机"/>
+    				<input type="button" value="查询" onclick="search('search-form')"/>
+    				<input type="button" value="添加用户" onclick="showNewUser('newUser');"/>
+                </form>
 			</div>
 			<div id="data-view">
 				<table id="list"></table>
@@ -29,12 +33,33 @@
 		<!--footer  底部-->
         <div id="all_footer" data-options="region:'south',split:false,border:false">this is vko footer</div>
 <!--对话框 编辑用户角色-->
-<div id="dlg-modUserRole" class="easyui-dialog" style="height:200;width:200;" data-options="closed:true">
+<div id="dlg-modUserRole" class="easyui-dialog" style="height:200;width:400;" data-options="closed:true">
 	编辑用户角色
 </div>
 <!--对话框 添加用户-->
-<div id="dlg-editUser" class="easyui-dialog" style="height:200;width:200;" data-options="closed:true">
-	增加用户
+#set($now_dlg="newUser")
+<div id="dlg-${now_dlg}" class="easyui-dialog" style="height:200;width:300;" data-options="closed:true,buttons:'#${now_dlg}-buttons'">
+	<div>
+		<form id="${now_dlg}-form">
+			<table>
+				<tr>
+					<td><label>用户名:<input id="${now_dlg}-userName" name="userName" placeholder="username"></label></td>
+				</tr>
+				<tr>
+					<td><label>密&nbsp;码:<input id="${now_dlg}-passWord" name="passWord" placeholder="password,默认123456"></label></td>
+				</tr>
+				<tr>
+					<td><label>邮&nbsp;箱:<input id="${now_dlg}-email" name="email" placeholder="email"></label></td>
+				</tr>
+				<tr>
+					<td><label>手&nbsp;机:<input id="${now_dlg}-phone" name="phone" placeholder="phone"></label></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<div id="${now_dlg}-buttons">
+		<input type="button" value="保存" onclick="newUser('${now_dlg}')"
+	</div>
 </div>
 	</body>  
 </html>

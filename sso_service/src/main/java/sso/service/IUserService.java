@@ -8,6 +8,7 @@ import sso.util.pager.PagerResponse;
 
 public interface IUserService extends IUserServiceRemote{
 	
-	PagerResponse<User> queryUserPager(PagerRequest request);
+	PagerResponse<User> queryUserPager(PagerRequest request,User user);
+	void newUser(User user);
 
 }

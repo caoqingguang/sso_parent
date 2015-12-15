@@ -1,8 +1,6 @@
 #set ($staticPath="http://static.cqg.cn/sso_static")
 #set ($ssoPath="http://sso.cqg.cn")
 
-<link rel="stylesheet" type="text/css" href="${staticPath}/sso/css/common.css">
-<script type="text/javascript" src="${staticPath}/sso/js/common.js"></script>	
 	
 	
 <script type="text/javascript" src="${staticPath}/common/jqueryplugin/easyui/jquery-1.7.2.min.js"></script>
@@ -13,6 +11,8 @@
 <script type="text/javascript" src="${staticPath}/common/jqueryplugin/easyui/locale/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="${staticPath}/common/jqueryplugin/easyui/easyui-date.js"></script>
 <script type="text/javascript" src="${staticPath}/common/jqueryplugin/easyui/jquery.form.js"></script>
+<link rel="stylesheet" type="text/css" href="${staticPath}/sso/css/common.css">
+<script type="text/javascript" src="${staticPath}/sso/js/common.js"></script>	
 
 <script type="text/javascript">
 	var topRef="";

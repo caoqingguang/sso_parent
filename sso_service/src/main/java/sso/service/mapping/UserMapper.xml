@@ -21,11 +21,54 @@
 	<select id="countAll" resultType="int">
 		select count(1) from user 
 	</select>
+	<insert id="insertUser" parameterType="sso.entity.User">
+		insert into user
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id,
+			<if test="userName !=null">userName,</if>
+			<if test="passWord !=null">passWord,</if>
+			<if test="token !=null">token,</if>
+			<if test="info !=null">info,</if>
+			<if test="resetHint !=null">resetHint,</if>
+			<if test="resetPw !=null">resetPw,</if>
+			<if test="email !=null">email,</if>
+			<if test="phone !=null">phone,</if>
+			<if test="crTime !=null">crTime,</if>
+			<if test="deleted !=null">deleted</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			     #{id,jdbcType=BIGINT}, 
+			<if test="userName !=null">#{userName,jdbcType=VARCHAR},</if>
+			<if test="passWord !=null">#{passWord,jdbcType=VARCHAR},</if>
+			<if test="token !=null">#{token,jdbcType=VARCHAR},</if>
+			<if test="info !=null">#{info,jdbcType=VARCHAR},</if>
+			<if test="resetHint !=null">#{resetHint,jdbcType=VARCHAR},</if>
+			<if test="resetPw !=null">#{resetPw,jdbcType=VARCHAR},</if>
+			<if test="email !=null">#{email,jdbcType=VARCHAR},</if>
+			<if test="phone !=null">#{phone,jdbcType=VARCHAR},</if>
+			<if test="crTime !=null">#{crTime,jdbcType=TIMESTAMP},</if>
+			<if test="deleted !=null">#{deleted,jdbcType=INTEGER},</if>
+		</trim>
+	</insert>
+	
 	<select id="selectUserById" resultMap="userMap">
 		select * from user where id=#{id,jdbcType=BIGINT}
 	</select>
 	<select id="selectUserList" resultMap="userMap">
 		select * from user
+		where 1=1
+		<if test="id !=null">
+			and id=#{id,jdbcType=BIGINT}
+		</if>
+		<if test="userName !=null">
+			and userName like "%"#{userName,jdbcType=VARCHAR}"%"
+		</if>
+		<if test="email !=null">
+			and email like "%"#{email,jdbcType=VARCHAR}"%"
+		</if>
+		<if test="phone !=null">
+			and phone like "%"#{phone,jdbcType=VARCHAR}"%"
+		</if>
 	</select>
 </mapper>
 

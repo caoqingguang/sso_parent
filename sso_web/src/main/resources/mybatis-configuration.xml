@@ -24,14 +24,14 @@
 		<setting name="defaultStatementTimeout" value="25000" />
 	</settings>
 	
-<!-- 	<plugins>
-		<plugin interceptor="cn.vko.common.utils.mybatis.GenCreateInterceptor" />
-	</plugins> -->
+
 	<plugins>
 		<plugin interceptor="sso.util.pager.PagerHelper" />
+		<plugin interceptor="sso.util.primarykey.GenIdInterceptor" />
 	</plugins>
 
 	<mappers>
 		<mapper resource="sso/service/mapping/UserMapper.xml"/>
+		<mapper resource="sso/service/mapping/SysMapper.xml"/>
 	</mappers>
 </configuration>

@@ -26,8 +26,9 @@
 	
 	<import resource="applicationContext-framework.xml"/>
 	<import resource="applicationContext-db.xml"/>
-	<!-- <import resource="applicationContext-redis.xml"/>
-	<import resource="applicationContext-genKey.xml"/> -->
+	<import resource="applicationContext-redis.xml"/>
+	<import resource="applicationContext-id.xml"/>
+	<!-- <import resource="applicationContext-genKey.xml"/> -->
 
 
 </beans>

@@ -15,11 +15,14 @@ public class UserServiceImpl implements IUserService{
 	@Autowired
 	private IUserMapper userMapper;
 
-	public PagerResponse<User> queryUserPager(PagerRequest request) {
-		// TODO Auto-generated method stub
+	public PagerResponse<User> queryUserPager(PagerRequest request,User user) {
 		PagerHelper.setPagerRequest(request);
-		this.userMapper.selectUserList();
+		this.userMapper.selectUserList(user);
 		return PagerHelper.getPagerResponse(User.class);
+	}
+
+	public void newUser(User user) {
+		this.userMapper.insertUser(user);
 	}
 
 }
