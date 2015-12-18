@@ -112,6 +112,8 @@
 	         </list>   
 	   </property>  
 	</bean>-->
-	
+	<mvc:interceptors>
+	    <bean id="sys_auth" class="sso.web.util.AuthIntecepter"/>
+	</mvc:interceptors> 
   
 </beans>

@@ -13,8 +13,10 @@ import sso.service.mapper.IUserMapper;
 @Controller
 public class TestController {
 	
+	@SuppressWarnings("unused")
 	@Autowired
 	private RedisTemplate<String, String> jedisTemplate;
+	@SuppressWarnings("unused")
 	@Autowired
 	private IUserMapper userMapper;
 	@Autowired
@@ -24,16 +26,16 @@ public class TestController {
 		return "test";
 	}
 	
-	@RequestMapping("count")
+	@RequestMapping("id")
 	@ResponseBody
-	public Object count(){
-		return this.sysMapper.countAll();
+	public Object count(Long id){
+		return this.sysMapper.selectObjById(id);
 	}
 	
 	@RequestMapping("select")
 	@ResponseBody
-	public Object select(String key){
-		return this.sysMapper.selectSysList(null);
+	public Object select(){
+		return this.sysMapper.selectObjList(null,null);
 	}
 	
 	

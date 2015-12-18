@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="sso.service.mapper.ISysRoleMapper">
+	<sql id="BaseCols">
+		id,roleName,roleType,roleDefUrl,sysId,sysChName,crTime,deleted
+	</sql>
+	<resultMap id="BaseMap" type="sso.entity.SysRole">
+		<id column="id" property="id" jdbcType="BIGINT"/>
+	    <result column="roleName" property="roleName" jdbcType="VARCHAR" />
+		<result column="roleType" property="roleType" jdbcType="INTEGER" />
+		<result column="roleDefUrl" property="roleDefUrl" jdbcType="VARCHAR" />
+		<result column="sysId" property="sysId" jdbcType="BIGINT" />
+		<result column="sysChName" property="sysChName" jdbcType="VARCHAR" />
+		<result column="crTime" property="crTime" jdbcType="DATE" />
+		<result column="deleted" property="deleted" jdbcType="INTEGER" />
+	</resultMap>
+	<insert id="insertObj" parameterType="sso.entity.SysRole">
+	
+	</insert>
+	<delete id="deleteObjById" parameterType="long">
+	
+	</delete>
+	<update id="updateObjById" parameterType="sso.entity.SysRole">
+	
+	</update>
+	<select id="selectObjById" resultMap="BaseMap">
+		select * from sys_role where id=#{id,jdbcType=BIGINT}
+	</select>
+	<select id="selectObj" parameterType="sso.entity.SysRole" resultMap="BaseMap">
+		select * from sys_role where id=#{id,jdbcType=BIGINT}
+	</select>
+	
+	<select id="selectObjList" parameterType="sso.entity.SysRole" resultMap="BaseMap">
+		select * from sys_role
+		where 1=1
+		<if test="args != null">
+			<if test="args.id !=null">
+				and id=#{args.id,jdbcType=BIGINT}
+			</if>
+			<if test="args.roleName !=null">
+				and roleName like "%"#{args.roleName,jdbcType=VARCHAR}"%"
+			</if>
+			<if test="args.sysId !=null">
+				and sysId = #{args.sysId,jdbcType=BIGINT}
+			</if>
+		</if>
+		<if	test="argsEx != null">
+		
+		</if>
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

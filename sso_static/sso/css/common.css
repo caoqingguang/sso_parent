@@ -1,19 +1,22 @@
-#all_header{
+#framework_header{
 	height:100px;
-	background:#ccc;
+	/* background:#ccc; */
+	border-bottom:thick dotted #ff0000;
 }
-#all_left{
-	width:100px;
+#framework_left{
+	width:200px;
+	border-right:thick dotted #ff0000;
 }
-#all_data{
+#framework_data{
 	padding:5px;
 	background:#eee;
 }
-#all_footer{
+#framework_footer{
 	height:50px;
 	background:#fcc;
 }
 
+/*最大最小*/
 #win-maxmin{
 	width:100px;
 	position:fixed;
@@ -25,13 +28,43 @@
 	background:yellow;
 	opacity:0.7;
 }
-.win-maxmin-btn{
+#win-maxmin .win-maxmin-btn{
 	background:green;
 	border-radius:10px 10px 10px 10px;
 	opacity:0.3;
 }
-.win-maxmin-btn:hover{
+#win-maxmin .win-maxmin-btn:hover{
 	background:yellow;
 	border:2px solid red;
 	opacity:1;
+}
+
+
+#vko-logo{
+	position:absolute;
+	width:200px;
+	overflow:hidden;
+	border-radius:10px;
+	top:15px;
+	left:10px;
+}
+#vko-sys-now{
+	float:left;
+	margin-left:240px;
+	margin-top:10px;
+	padding:10px;
+}
+#vko-sys-all{
+	position:absolute;
+	left:250px;
+	top:45px;
+}
+#vko-user-area{
+	position:absolute;
+	right:10px;
+	top:45px;
+}
+
+vko_sys_select{
+	background:red;
 }

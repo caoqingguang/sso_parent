@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="sso.service.mapper.IRoleMapper">
+	
+	<sql id="BaseCols">
+		id,****
+	</sql>
+	<resultMap id="BaseMap" type="****entityType****">
+		<id column="id" property="id" jdbcType="BIGINT"/>
+	    <result column="sysName" property="sysName" jdbcType="VARCHAR" />
+		<result column="sysLev" property="sysLev" jdbcType="INTEGER" />
+		<result column="crTime" property="crTime" jdbcType="DATE" />
+	</resultMap>
+	<insert id="insertObj" parameterType="****entityType****">
+	
+	</insert>
+	<delete id="deleteObjById" parameterType="long">
+	
+	</delete>
+	<update id="updateObjById" parameterType="****entityType****">
+	
+	</update>
+	<select id="selectObjById" resultMap="BaseMap">
+		select * from ****table**** where id=#{id,jdbcType=BIGINT}
+	</select>
+	<select id="selectObj" parameterType="****entityType****" resultMap="BaseMap">
+		select * from ****table**** where id=#{id,jdbcType=BIGINT}
+	</select>
+	
+	<select id="selectObjList" parameterType="****entityType****" resultMap="BaseMap">
+		select * from ****table****
+		where 1=1
+		<if test="id !=null">
+			and id=#{id,jdbcType=BIGINT}
+		</if>
+		<if test="**** !=null">
+			and **** = #{****,jdbcType=VARCHAR}
+		</if>
+		<if test="**** !=null">
+			and **** like "%"#{****,jdbcType=VARCHAR}"%"
+		</if>
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

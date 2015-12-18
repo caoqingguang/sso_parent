@@ -32,10 +32,10 @@ public class PageForm {
 	
 	public PagerRequest genRequest(){
 		PagerRequest request=new PagerRequest();
-		if(this.page>0){
+		if(this.page!=null&&this.page>0){
 			request.setPageIndex(this.page);
 		}
-		if(this.rows>0){
+		if(this.rows!=null&&this.rows>0){
 			request.setRowNum(this.rows);
 		}
 		if(this.order!=null&&this.order!=""){

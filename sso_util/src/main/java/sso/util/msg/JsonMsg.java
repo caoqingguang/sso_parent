@@ -8,6 +8,7 @@ public final class JsonMsg implements Serializable{
 	private String code;
 	private String message;
 	private Object data;
+	private Object dataEx;
 	public String getCode() {
 		return code;
 	}
@@ -28,10 +29,20 @@ public final class JsonMsg implements Serializable{
 		this.data = data;
 		return this;
 	}
+	
+	
+	public Object getDataEx() {
+		return dataEx;
+	}
+	public JsonMsg setDataEx(Object dataEx) {
+		this.dataEx = dataEx;
+		return this;
+	}
 	public JsonMsg setSuccess(){
 		this.code=SUCCESS;
 		return this;
 	}
+	
 	public JsonMsg setSuccess(String msg){
 		return this.setSuccess().setMessage(msg);
 	}

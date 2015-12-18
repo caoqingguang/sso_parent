@@ -1,0 +1,14 @@
+<!--header 顶部导航栏 -->
+<div id="framework_header" data-options="region:'north',split:false,border:false">
+	<div style="position:relative">
+	#parse("./common/header.vm")
+	</div>
+</div>
+<!--left  左侧导航栏 -->
+<div id="framework_left" data-options="region:'west',split:false,border:false">
+	<div style="position:relative">
+	#parse("./common/left.vm")
+	</div>
+</div>   
+<!--center  中间业务区 -->
+<div id="framework_data" data-options="region:'center',border:false">

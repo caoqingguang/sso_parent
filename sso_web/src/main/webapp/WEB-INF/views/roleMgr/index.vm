@@ -1,9 +1,59 @@
 <html>
 	<head>
+		#set($vko_sys_opt="角色管理")
+		#parse("./common/common.vm")
         <title>roleMgr VM</title>
+		<script type="text/javascript" src="${staticPath}/sso/js/roleMgr/roleMgr.js"></script>
 	</head>
-	<body>
-		<h1>roleMgr</h1>
-		<div>hello this is roleMgr page</div>
-	</body>
+	<body class="easyui-layout">
+#parse("./common/framework_header_left.vm")
+	<div id="data-query">
+		<form id="search-form">
+			<input type="text" name="id" placeholder="角色id"/>
+			<input type="text" name="roleName" placeholder="角色名称"/>
+			<input type="text" name="roleType" placeholder="角色类型"/>
+			<select name="sysId">
+    			<option id="sysId_null" value="" style="background:grey"><i>&lt;选择系统&gt;</i></option>
+    			#foreach($team in $sysList)
+    				<option id="sysId_${team.id}" value="${team.id}" #if("${team.id}"=="$!{sysId}") selected #end)>&nbsp;$!{team.sysChName}</option>
+    			#end
+    		</select>
+			<input type="button" value="查询" onclick="search('search-form')"/>
+			<input type="button" value="添加角色" onclick="showNewUser('newUser');"/>
+        </form>
+	</div>
+	<div id="data-view">
+		<table id="list"></table>
+	</div>
+#parse("./common/framework_footer.vm")			
+<!--对话框 编辑用户角色-->
+<div id="dlg-modUserRole" class="easyui-dialog" style="height:200;width:400;" data-options="closed:true">
+	编辑用户角色
+</div>
+<!--对话框 添加用户-->
+#set($now_dlg="newUser")
+<div id="dlg-${now_dlg}" class="easyui-dialog" style="height:200;width:300;" data-options="closed:true,buttons:'#${now_dlg}-buttons'">
+	<div>
+		<form id="${now_dlg}-form">
+			<table>
+				<tr>
+					<td><label>用户名:<input id="${now_dlg}-userName" name="userName" placeholder="username"></label></td>
+				</tr>
+				<tr>
+					<td><label>密&nbsp;码:<input id="${now_dlg}-passWord" name="passWord" placeholder="password,默认123456"></label></td>
+				</tr>
+				<tr>
+					<td><label>邮&nbsp;箱:<input id="${now_dlg}-email" name="email" placeholder="email"></label></td>
+				</tr>
+				<tr>
+					<td><label>手&nbsp;机:<input id="${now_dlg}-phone" name="phone" placeholder="phone"></label></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<div id="${now_dlg}-buttons">
+		<input type="button" value="保存" onclick="newUser('${now_dlg}')"
+	</div>
+</div>
+	</body>  
 </html>

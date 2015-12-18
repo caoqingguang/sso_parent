@@ -1,7 +1,45 @@
-<script type="text/javascript" src="${staticPath}/job2/js/login.js"></script>
 <div>
-<a href="javascript:logout();" style="float:right;">退出</a>
-<h1>welcome job center</h1>
+	<div id="vko-logo" >
+		<img src="${staticPath}/sso/image/logo.png"/>
+	</div>
+	<div id="vko-sys-now">
+		当前位置:<label class="vko-sys-name">$!{vko_sys_now.sysChName}</label>系统&gt;&gt;&gt;&gt;<label class="vko-sys-opt">$!{vko_sys_opt}</label>
+	</div>
+	<!--系统-->
+	<div id="vko-sys-all">
+		#set($sys_id="6")
+		#set($vko_sys_view_num=5)
+		#foreach($team in $vko_sysList)
+			#if($!{velocityCount}<$vko_sys_view_num+1)
+            <input value="${team.sysChName}" type="button" onclick="alert('${team.defUrl}');" #if(${team.id}==${vko_sys_now.id})style="background:yellow;" class="vko_sys_select"#end/>
+			#end
+		#end
+		#if(${vko_sysList.size()}>$vko_sys_view_num)
+			<select >
+				<option>&lt;-更多-&gt;</option>
+			#foreach($team in $vko_sysList)
+				#if($!{velocityCount}>$vko_sys_view_num)
+					#if(${team.id}==${vko_sys_now.id})
+						<option value="${tean.defUrl}" class="vko_sys_select" style="background:yellow" selected>${team.sysChName}</option>
+					#else
+						<option value="${tean.defUrl}">${team.sysChName}</option>
+					#end
+				#end
+			#end
+            </select>
+		#end
+	</div>
+	<!--用户区-->
+	<div id="vko-user-area" style="float:right;max-width:500px;">
+    	<font>你好</font>
+		#if(${vko_userName.userName})
+        	<label class="username">$!{vko_userName.userName}</label>
+			<label class="login login-in"><a>退出系统</a>&nbsp;<a>修改密码</a></label>
+		#else
+			<label class="username">我们的上帝</label>
+			<label class="login login-out">登陆系统</label>
+		#end
+	</div>
 </div>
 
 

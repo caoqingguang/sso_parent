@@ -1,10 +1,93 @@
 <html>
 	<head>
+		#set($vko_sys_opt="URl管理")
 		#parse("./common/common.vm")
         <title>urlMgr VM</title>
+		<script type="text/javascript" src="${staticPath}/sso/js/urlMgr/urlMgr.js"></script>
 	</head>
-	<body>
-		<h1>urlMgr</h1>
-		<div>hello this is urlMgr page</div>
-	</body>
+	<body class="easyui-layout">
+#parse("./common/framework_header_left.vm")
+<div id="data-query">
+	<form id="search-form">
+	<input type="text" name="id" placeholder="URL_id" hidden/>
+		<input type="text" name="urlName" placeholder="URL_名称"/>
+		<input type="text" name="indexStr" placeholder="URL_索引"/>
+		<input type="text" name="urlLev" placeholder="URL_url"/>
+		<select name="sysId">
+ 			<option id="sysId_null" value="" style="background:grey"><i>&lt;选择系统&gt;</i></option>
+ 			#foreach($team in $sysList)
+				<option id="sysId_${team.id}" value="${team.id}" #if("${team.id}"=="$!{sysId}") selected #end)>&nbsp;$!{team.sysChName}</option>
+			#end
+		</select>
+		<input id="pid" type="text" name="pid" placeholder="pId" value="0" hidden/>
+		<input type="button" value="查询" onclick="search('search-form')"/>
+		<input type="button" value="添加URL" onclick="showNewURL('newUrl');"/>
+		<input id="parent" placeholder="根路�? readonly style="background:yellow"/>
+		<input type="button" value="返回" onclick="parentURL0();"/>
+		<input type="button" value="�? onclick="parentURL(0);"/>
+    </form>
+</div>
+<div id="data-view">
+	<table id="list"></table>
+</div>
+#parse("./common/framework_footer.vm")			
+<!--对话�?编辑用户角色-->
+##<div id="dlg-modUserRole" class="easyui-dialog" style="height:200;width:400;" data-options="closed:true">
+##	编辑用户角色
+##</div>
+<!--对话�?添加用户-->
+#set($now_dlg="newUrl")
+<div id="dlg-${now_dlg}" class="easyui-dialog" style="height:300;width:400;" data-options="closed:true,buttons:'#${now_dlg}-buttons'">
+	<div>
+		<form id="${now_dlg}-form">
+			<table>
+				<tr>
+					<td><label>nbsp;&nbsp;�?<input id="${now_dlg}-parent" placeholder="根路�? readonly style="background:yellow"></label></td>
+				</tr>
+				<tr>
+					<td>
+					<label>
+						链接名称:<input id="${now_dlg}-urlName" name="urlName" placeholder="名称"/>
+						<input id="${now_dlg}-pid" name="pid" placeholder="pid" hidden/>
+					</label>
+					</td>
+				</tr>
+				<tr>
+					<td><label>链接索引:<input id="${now_dlg}-indexStr" name="indexStr" placeholder="索引"></label></td>
+				</tr>
+				<tr>
+					<td><label>链接地址:<input id="${now_dlg}-url" name="url" placeholder="url,默认javascript:void(0)"></label></td>
+				</tr>
+				<tr>
+					<td><label>菜单展示:</label><label><input id="${now_dlg}-canShow" name="canShow" value="1" type="radio"/></label><label><input id="${now_dlg}-canShow" name="canShow" value="2" type="radio"/></label></td>
+				</tr>
+				<tr>
+					<td><label>�?nbsp;&nbsp;�?<input id="${now_dlg}-sn" name="sn" placeholder="sn,默认100"></label></td>
+				</tr>
+				<tr>
+					<td>
+						<label>�?��系统:<select id="${now_dlg}-sysId" name="sysId">
+             			<option id="${now_dlg}-sysId-null" value="" style="background:grey"><i>&lt;默认系统&gt;</i></option>
+             			#foreach($team in $sysList)
+            				<option id="${now_dlg}-sysId-${team.id}" value="${team.id}" #if("${team.id}"=="$!{sysId}") selected #end)>&nbsp;$!{team.sysChName}</option>
+            			#end
+            		</select></label>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<div id="${now_dlg}-buttons">
+		<input type="button" value="保存" onclick="newURL('${now_dlg}')"
+	</div>
+</div>
+<script>
+	var sysDic={};
+	#foreach($team in $sysList)
+       sysDic['${team.id}']='${team.sysChName}';
+    #end
+</script>
+
+	</body>  
 </html>
+	

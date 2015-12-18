@@ -1,0 +1,6 @@
+
+		</div> 
+		<!--footer  底部-->
+        <div id="framework_footer" data-options="region:'south',split:false,border:false">
+			#parse("./common/footer.vm")
+		</div>

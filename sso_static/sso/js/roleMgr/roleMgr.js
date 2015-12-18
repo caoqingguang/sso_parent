@@ -4,7 +4,7 @@ $(function(){
 
 function getList(){
 		$('#list').datagrid({
-			url : "/userMgr/list",
+			url : "/roleMgr/list",
 			width : '80%',
 			height : '450',
 			loadMsg : '数据加载中...',
@@ -16,17 +16,17 @@ function getList(){
 			sortName:'id',
 			loadFilter:convData,
 			columns : [[
-			 {field : 'id',title : '用户id',width : 100,align : 'center'},
-			 {field : 'userName',title : '用户名称',width : 100,align : 'center'},
-			 {field : 'email',title : '邮箱',width : 200,align : 'center'},
-			 {field : 'phone',title : '手机',width : 150,align : 'center'},
+			 {field : 'id',title : '角色id',width : 100,align : 'center'},
+			 {field : 'roleName',title : '角色名称',width : 100,align : 'center'},
+			 {field : 'roleDefUrl',title : '默认主页',width : 200,align : 'center'},
+			 {field : 'sysChName',title : '系统名称',width : 150,align : 'center'},
 			 {field : 'deleted',title : '状态',width : 200,align : 'center'},
 			 {field : 'aa',title : '操作',width : 150,align : 'center',
 				 formatter:function(value,row,index){
 					 var html='';
 					 html="<input type='button' value='编辑' onclick=\"showEditUser('save','"+row.id+"')\"/>";
 					 html+='&nbsp;&nbsp;'
-					 html+="<input type='button' value='角色' onclick=\"modUserRole('"+row.id+"')\"/>";
+					 html+="<input type='button' value='权限' onclick=\"modUserRole('"+row.id+"')\"/>";
 					 return html;
 				 }
 			 }

@@ -1,0 +1,8 @@
+<div>
+	<a href="/sysMgr">系统管理</a></br>
+	<a href="/roleMgr">角色管理</a></br>
+	<a href="/urlMgr">URL管理</a></br>
+	<a href="/userMgr">用户管理</a></br>
+</div>
+
+

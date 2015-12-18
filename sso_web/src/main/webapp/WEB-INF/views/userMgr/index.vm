@@ -1,21 +1,13 @@
 <html>
 	<head>
+		#set($vko_sys_opt="用户管理")
 		#parse("./common/common.vm")
         <title>userMgr VM</title>
 		<script type="text/javascript" src="${staticPath}/sso/js/userMgr/userMgr.js"></script>
 	</head>
 	<body class="easyui-layout">
-
-        <!--header 顶部导航栏 -->
-		<div id="all_header" data-options="region:'north',split:false,border:false">
-			<div>
-				<h1 id="header-title">用户管理</h1>
-			</div>
-		</div>
-		<!--left  左侧导航栏 -->
-        <div id="all_left" data-options="region:'west',split:false,border:false">this is nav</div>   
-		<!--center  中间业务区 -->
-		<div id="all_data" data-options="region:'center',border:false">
+<!--公用页首 框架-->
+#parse("./common/framework_header_left.vm")
 			<div id="data-query">
 				<form id="search-form">
     				<input type="text" name="id" placeholder="用户id"/>
@@ -29,9 +21,9 @@
 			<div id="data-view">
 				<table id="list"></table>
 			</div>
-		</div> 
-		<!--footer  底部-->
-        <div id="all_footer" data-options="region:'south',split:false,border:false">this is vko footer</div>
+<!--公用页尾 框架-->
+#parse("./common/framework_footer.vm")
+
 <!--对话框 编辑用户角色-->
 <div id="dlg-modUserRole" class="easyui-dialog" style="height:200;width:400;" data-options="closed:true">
 	编辑用户角色

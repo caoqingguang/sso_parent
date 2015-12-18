@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="sso.service.mapper.ISysUrlMapper">
+	<sql id="BaseCols">
+		id,urlName,indexStr,url,urlLev,pid,pids,hasChild,canShow,sysId,sn
+	</sql>
+	<resultMap id="BaseMap" type="sso.entity.SysUrl">
+		<id column="id" property="id" jdbcType="BIGINT"/>
+		<result column="urlName" property="urlName" jdbcType="VARCHAR" />
+		<result column="indexStr" property="indexStr" jdbcType="VARCHAR" />
+		<result column="url" property="url" jdbcType="VARCHAR" />
+		<result column="urlLev" property="urlLev" jdbcType="INTEGER" />
+		<result column="pid" property="pid" jdbcType="BIGINT" />
+		<result column="pids" property="pids" jdbcType="VARCHAR" />
+	    <result column="hasChild" property="hasChild" jdbcType="INTEGER" />
+	    <result column="canShow" property="canShow" jdbcType="INTEGER" />
+		<result column="sysId" property="sysId" jdbcType="BIGINT" />
+		<result column="sn" property="sn" jdbcType="INTEGER" />
+	</resultMap>
+	<insert id="insertObj" parameterType="sso.entity.SysUrl">
+		insert into sys_url
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id,
+			<if test="urlName !=null">urlName,</if>
+			<if test="indexStr !=null">indexStr,</if>
+			<if test="url !=null">url,</if>
+			<if test="urlLev !=null">urlLev,</if>
+			<if test="pid !=null">pid,</if>
+			<if test="pids !=null">pids,</if>
+			<if test="hasChild !=null">hasChild,</if>
+			<if test="canShow !=null">canShow,</if>
+			<if test="sysId !=null">sysId,</if>
+			<if test="sn !=null">sn</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			     #{id,jdbcType=BIGINT}, 
+			<if test="urlName !=null">#{urlName,jdbcType=VARCHAR},</if>
+			<if test="indexStr !=null">#{indexStr,jdbcType=VARCHAR},</if>
+			<if test="url !=null">#{url,jdbcType=VARCHAR},</if>
+			<if test="urlLev !=null">#{urlLev,jdbcType=INTEGER},</if>
+			<if test="pid !=null">#{pid,jdbcType=BIGINT},</if>
+			<if test="pids !=null">#{pids,jdbcType=VARCHAR},</if>
+			<if test="hasChild !=null">#{hasChild,jdbcType=INTEGER},</if>
+			<if test="canShow !=null">#{canShow,jdbcType=INTEGER},</if>
+			<if test="sysId !=null">#{sysId,jdbcType=BIGINT},</if>
+			<if test="sn !=null">#{sn,jdbcType=INTEGER},</if>
+		</trim>
+	</insert>
+	<delete id="deleteObjById" parameterType="long">
+		delete from sys_url where id=#{id,jdbcType=BIGINT}
+	</delete>
+	<update id="updateObjById" parameterType="sso.entity.SysUrl">
+	
+	</update>
+	<select id="selectObjById" resultMap="BaseMap">
+		select * from sys_url where id=#{id,jdbcType=BIGINT}
+	</select>
+	<select id="selectObj" parameterType="sso.entity.SysUrl" resultMap="BaseMap">
+		select * from sys_url where 1=1 
+		<if test="id !=null"> and id=#{id,jdbcType=BIGINT} </if>
+		<if test="urlName !=null"> and urlName=#{urlName,jdbcType=VARCHAR} </if>
+		<if test="pid !=null"> and pid=#{pid,jdbcType=BIGINT} </if>
+	</select>
+	
+	<select id="selectObjList" resultMap="BaseMap">
+		select * from sys_url
+		where id>0
+		<if test="args !=null">
+			<if test="args.id !=null">
+				and id=#{args.id,jdbcType=BIGINT}
+			</if>
+			<if test="args.urlName !=null">
+				and urlName like "%"#{args.urlName,jdbcType=VARCHAR}"%"
+			</if>
+			<if test="args.indexStr !=null">
+				and indexStr like "%"#{args.indexStr,jdbcType=VARCHAR}"%"
+			</if>
+			<if test="args.url !=null">
+				and url like "%"#{args.url,jdbcType=VARCHAR}"%"
+			</if>
+			<if test="args.sysId !=null">
+				and sysId=#{args.sysId,jdbcType=INTEGER}
+			</if>
+			<if test="args.pid !=null">
+				and pid =#{args.pid,jdbcType=BIGINT}
+			</if>
+			<if test="args.pids !=null">
+				and pids=#{args.pids,jdbcType=VARCHAR}
+			</if>
+		</if>
+		
+		
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

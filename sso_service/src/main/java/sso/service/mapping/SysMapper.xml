@@ -1,10 +1,12 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="sso.service.mapper.ISysMapper">
-	<sql id="sysBase">
+	
+	
+	<sql id="BaseCols">
 		id,sysName,sysChName,indexStr,defUrl,sysLev,sysType,crTime,regPw,regPrefix,regNullUrl
 	</sql>
-	<resultMap id="sysMap" type="sso.entity.Sys">
+	<resultMap id="BaseMap" type="sso.entity.Sys">
 		<id column="id" property="id" jdbcType="BIGINT"/>
 	    <result column="sysName" property="sysName" jdbcType="VARCHAR" />
 		<result column="sysChName" property="sysChName" jdbcType="VARCHAR" />
@@ -17,24 +19,38 @@
 		<result column="regPrefix" property="regPrefix" jdbcType="VARCHAR" />
 		<result column="regNullUrl" property="regNullUrl" jdbcType="VARCHAR" />
 	</resultMap>
+	<insert id="insertObj" parameterType="sso.entity.Sys">
 	
-	<select id="countAll" resultType="int">
-		select count(1) from sys 
+	</insert>
+	<delete id="deleteObjById" parameterType="long">
+	
+	</delete>
+	<update id="updateObjById" parameterType="sso.entity.Sys">
+	
+	</update>
+	<select id="selectObjById" resultMap="BaseMap">
+		select * from sys where id=#{id,jdbcType=BIGINT}
 	</select>
-	<select id="selectSysById" resultMap="sysMap">
-		select * from Sys where id=#{id,jdbcType=BIGINT}
+	<select id="selectObj" parameterType="sso.entity.Sys" resultMap="BaseMap">
+		select * from sys where id=#{id,jdbcType=BIGINT}
 	</select>
-	<select id="selectSysList" resultMap="sysMap">
+	
+	<select id="selectObjList" parameterType="sso.entity.Sys" resultMap="BaseMap">
 		select * from sys
 		where 1=1
-		<if test="id !=null">
-			and id=#{id,jdbcType=BIGINT}
-		</if>
-		<if test="userName !=null">
-			and userName like "%"#{userName,jdbcType=VARCHAR}"%"
-		</if>
-		<if test="email !=null">
-			and email like "%"#{email,jdbcType=VARCHAR}"%"
+		<if test="args !=null">
+			<if test="args.id !=null">
+				and id=#{args.id,jdbcType=BIGINT}
+			</if>
+			<if test="args.sysName !=null">
+				and sysName like "%"#{args.sysName,jdbcType=VARCHAR}"%"
+			</if>
+			<if test="args.sysChName !=null">
+				and sysChName like "%"#{args.sysChName,jdbcType=VARCHAR}"%"
+			</if>
+			<if test="args.sysLev !=null">
+				and sysLev=#{args.sysLev,jdbcType=INTEGER}"%"
+			</if>
 		</if>
 	</select>
 </mapper>

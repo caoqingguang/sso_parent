@@ -33,5 +33,7 @@
 	<mappers>
 		<mapper resource="sso/service/mapping/UserMapper.xml"/>
 		<mapper resource="sso/service/mapping/SysMapper.xml"/>
+		<mapper resource="sso/service/mapping/SysRoleMapper.xml"/>
+		<mapper resource="sso/service/mapping/SysUrlMapper.xml"/>
 	</mappers>
 </configuration>

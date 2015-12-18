@@ -21,12 +21,14 @@ function getList(){
 			 {field : 'email',title : '邮箱',width : 200,align : 'center'},
 			 {field : 'phone',title : '手机',width : 150,align : 'center'},
 			 {field : 'deleted',title : '状态',width : 200,align : 'center'},
-			 {field : 'aa',title : '操作',width : 150,align : 'center',
+			 {field : 'aa',title : '操作',width : 180,align : 'center',
 				 formatter:function(value,row,index){
 					 var html='';
 					 html="<input type='button' value='编辑' onclick=\"showEditUser('save','"+row.id+"')\"/>";
-					 html+='&nbsp;&nbsp;'
+					 html+='&nbsp;';
 					 html+="<input type='button' value='角色' onclick=\"modUserRole('"+row.id+"')\"/>";
+					 html+='&nbsp;';
+					 html+="<input type='button' value='删除' onclick=\"rmvUser('"+row.id+"')\"/>";
 					 return html;
 				 }
 			 }
@@ -44,6 +46,7 @@ function getList(){
 }
 function search(flag){
 	var data=$('#'+flag).serializeJson();
+	data.page=1;
 	$('#list').datagrid('reload',data);
 }
 function modUserRole(id){
@@ -73,6 +76,10 @@ function newUser(flag){
 			return false;
 		}
 	});
+}
+
+function rmvUser(id){
+	alert("删除用户"+id);
 }
 
 
