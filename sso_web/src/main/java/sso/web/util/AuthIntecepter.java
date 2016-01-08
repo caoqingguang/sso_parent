@@ -15,6 +15,7 @@ import sso.entity.User;
 
 public class AuthIntecepter implements HandlerInterceptor{
 	
+	
 	@Autowired
 	private Sys sys;
 	@Autowired
@@ -33,7 +34,8 @@ public class AuthIntecepter implements HandlerInterceptor{
 
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
-		// TODO Auto-generated method stub
+		String url=request.getRequestURL().toString();
+		System.out.println(url);
 		return true;
 	}
 

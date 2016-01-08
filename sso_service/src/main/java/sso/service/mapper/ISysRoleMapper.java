@@ -5,6 +5,5 @@ import sso.util.framework.mapper.IBaseMapper;
 
 public interface ISysRoleMapper extends IBaseMapper<SysRole>{
 
-	
 
 }

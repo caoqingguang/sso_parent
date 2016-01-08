@@ -1,7 +1,16 @@
 package sso.util.framework.mapper;
 
-import sso.util.framework.entity.SupperBaseEntity;
-import sso.util.framework.service.ISupperBaseService;
+import java.util.List;
 
-public interface IBaseMapper<T extends SupperBaseEntity> extends ISupperBaseService<T>{
+import org.apache.ibatis.annotations.Param;
+
+import sso.util.framework.entity.SupperBaseEntity;
+
+public interface IBaseMapper<T extends SupperBaseEntity>{
+	void insertObj(T obj);
+	void deleteObjById(Long id);
+	void updateObjById(T obj);
+	T selectObjById(Long id);
+	T selectObj(T obj);
+	List<T> selectObjList(@Param("args")T obj,@Param("argsEx")Object anyObj);
 }

@@ -1,5 +1,7 @@
 package sso.web.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import sso.entity.Sys;
 import sso.entity.SysUrl;
 import sso.service.ISysService;
 import sso.service.ISysUrlService;
@@ -23,7 +26,7 @@ public class SysUrlController {
 	@Autowired
 	private ISysService sysService;
 
-	@RequestMapping("")
+	@RequestMapping("table")
 	public String index(Model model,Long sysId){
 		if(sysId==null){
 			sysId=0l;
@@ -80,7 +83,10 @@ public class SysUrlController {
 		}
 		sysUrl.setPids(parent.getPids()+pid+"/");
 		sysUrl.setUrlLev(parent.getUrlLev()+1);
+		int sn=sysUrl.getSn()==null?1000:sysUrl.getSn();
+		sysUrl.setSn(sn<1?1000:sn);
 		this.urlService.insertObj(sysUrl);
+		
 		msg.setData(sysUrl);
 		return msg;
 	}
@@ -90,6 +96,34 @@ public class SysUrlController {
 	public Object rmvURL(@RequestParam("id")Long id){
 		JsonMsg msg=JsonMsg.newSuccess("删除成功");
 		this.urlService.deleteObjById(id);
+		return msg;
+	}
+	
+	@RequestMapping("modURL")
+	@ResponseBody
+	public Object modURL(@ModelAttribute SysUrl sysUrl,@RequestParam("id")Long id){
+		JsonMsg msg=JsonMsg.newSuccess("修改url成功");
+		SysUrl url=new SysUrl();
+		url.setId(id);
+		url.setUrlName(sysUrl.getUrlName());
+		url.setUrl(sysUrl.getUrl());
+		url.setCanShow(sysUrl.getCanShow());
+		url.setIndexStr(sysUrl.getIndexStr());
+		int sn=sysUrl.getSn()==null?1000:sysUrl.getSn();
+		sysUrl.setSn(sn<1?1000:sn);
+		this.urlService.updateObjById(url);
+		return msg;
+	}
+	@RequestMapping("")
+	public Object urlTreeMgr(){
+		return "urlMgr/urlTreeMgr";
+	}
+	@RequestMapping("tree")
+	@ResponseBody
+	public Object tree(){
+		JsonMsg msg=JsonMsg.newSuccess("tree");
+		List<Sys> sysList=this.sysService.selectObjList(null, null);
+		msg.setData(this.urlService.selectSysUrlTree(sysList));
 		return msg;
 	}
 

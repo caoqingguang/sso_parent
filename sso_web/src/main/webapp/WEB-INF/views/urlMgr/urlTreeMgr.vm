@@ -1,0 +1,81 @@
+<html>
+	<head>
+		#set($vko_sys_opt="URl管理")
+		#parse("./common/common.vm")
+        <title>urlMgr VM</title>
+		<link rel="stylesheet" href="${staticPath}/common/jqueryplugin/zTree_v3/css/zTreeStyle/zTreeStyle.css" type="text/css">
+		<script type="text/javascript" src="${staticPath}/common/jqueryplugin/zTree_v3/js/jquery.ztree.all-3.5.js"></script>
+		<script type="text/javascript" src="${staticPath}/sso/js/urlMgr/urlTreeMgr.js"></script>
+		<style>
+			.url_input{
+				width:350px;
+			}
+		</style>
+	</head>
+	<body class="easyui-layout">
+#parse("./common/framework_header_left.vm")
+<div id="data-view" style="margin:0px;">
+	<ul id="urlTree" class="ztree" style="width:400px;height:600px;border:1px solid red;float:left;">
+	</ul>
+	<div style="border:1px solid red;margin-left:auto;margin-right:auto;width:500px;">
+		#set($dlg_now="edit_url")
+		<form id="${dlg_now}">
+			<table>
+				<tr style="display:none;">
+					<td width="40">id:</td>
+					<td><input id="${dlg_now}_id" name="id" placeholder="id"/></td>
+				</tr>
+				<tr style="display:none;">
+					<td>pid:</td>
+					<td><input id="${dlg_now}_pid" name="pid" placeholder="pid"/></td>
+				</tr>
+				<tr>
+					<td>名称:</td>
+					<td><input id="${dlg_now}_urlName" name="urlName" placeholder="名称" class="url_input"/></td>
+				</tr>
+				<tr>
+					<td>索引:</td>
+					<td><input id="${dlg_now}_indexStr" name="indexStr" placeholder="索引" class="url_input"/></td>
+				</tr>
+				<tr>
+					<td>地址:</td>
+					<td><input id="${dlg_now}_url" name="url" placeholder="地址" class="url_input"/></td>
+				</tr>
+				<tr>
+					<td>序号:</td>
+					<td><input id="${dlg_now}_sn" name="sn" placeholder="序号" class="url_input"/></td>
+				</tr>
+				<tr>
+					<td>显示:</td>
+					<td>
+						<label><input id="${dlg_now}_canShow_1" name="canShow" value="1" type="radio"/>是</label>
+						<label><input id="${dlg_now}_canShow_2" name="canShow" value="2" type="radio" checked/>否</label>
+					</td>
+				</tr>
+				<tr style="display:none;">
+					<td></td>
+					<td>
+						<input id="${dlg_now}_urlLev" name="urlLev" placeholder="urlLev"/><br/>
+						<input id="${dlg_now}_sysId" name="sysId" placeholder="sysId"/>
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>
+						<input id="${dlg_now}_new" type="button" value="新增" onclick="newURL();"/>
+						<input id="${dlg_now}_save" type="button" value="保存" onclick="saveURL();"/>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<div id='menu' class='easyui-menu'>
+			<div id="add" data-options="iconCls:'icon-add'" onclick="showAddTreeNode();">增加节点</div>
+			<div id="del" data-options="iconCls:'icon-remove'" onclick="showRemoveTreeNode(true);">删除节点</div>
+			<div id="mod" data-options="iconCls:'icon-edit'" onclick="showModTreeNode();" style="display:none;">编辑节点</div>
+	</div>
+</div>
+#parse("./common/framework_footer.vm")			
+	</body>  
+</html>
+	

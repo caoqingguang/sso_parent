@@ -15,13 +15,43 @@
 		<result column="deleted" property="deleted" jdbcType="INTEGER" />
 	</resultMap>
 	<insert id="insertObj" parameterType="sso.entity.SysRole">
-	
+		insert into sys_role
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id,
+			<if test="roleName !=null">roleName,</if>
+			<if test="roleType !=null">roleType,</if>
+			<if test="roleDefUrl !=null">roleDefUrl,</if>
+			<if test="sysId !=null">sysId,</if>
+			<if test="sysChName !=null">sysChName,</if>
+			<if test="crTime !=null">crTime,</if>
+			<if test="deleted !=null">deleted,</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			     #{id,jdbcType=BIGINT}, 
+			<if test="roleName !=null">#{roleName,jdbcType=VARCHAR},</if>
+			<if test="roleType !=null">#{roleType,jdbcType=VARCHAR},</if>
+			<if test="roleDefUrl !=null">#{roleDefUrl,jdbcType=VARCHAR},</if>
+			<if test="sysId !=null">#{sysId,jdbcType=VARCHAR},</if>
+			<if test="sysChName !=null">#{sysChName,jdbcType=VARCHAR},</if>
+			<if test="crTime !=null">#{crTime,jdbcType=TIMESTAMP},</if>
+			<if test="deleted !=null">#{deleted,jdbcType=INTEGER},</if>
+		</trim>
 	</insert>
 	<delete id="deleteObjById" parameterType="long">
-	
+		delete from sys_role where id=#{id,jdbcType=BIGINT}
 	</delete>
 	<update id="updateObjById" parameterType="sso.entity.SysRole">
-	
+		update sys_role
+		<set>
+			<if test="roleName !=null">roleName=#{roleName,jdbcType=VARCHAR},</if>
+			<if test="roleType !=null">roleType=#{roleType,jdbcType=VARCHAR},</if>
+			<if test="roleDefUrl !=null">roleDefUrl=#{roleDefUrl,jdbcType=VARCHAR},</if>
+			<if test="sysId !=null">sysId=#{sysId,jdbcType=VARCHAR},</if>
+			<if test="sysChName !=null">sysChName=#{sysChName,jdbcType=VARCHAR},</if>
+			<if test="crTime !=null">crTime=#{crTime,jdbcType=TIMESTAMP},</if>
+			<if test="deleted !=null">deleted=#{deleted,jdbcType=INTEGER},</if>
+		</set>
+		where id=#{id,jdbcType=BIGINT}
 	</update>
 	<select id="selectObjById" resultMap="BaseMap">
 		select * from sys_role where id=#{id,jdbcType=BIGINT}

@@ -50,7 +50,21 @@
 		delete from sys_url where id=#{id,jdbcType=BIGINT}
 	</delete>
 	<update id="updateObjById" parameterType="sso.entity.SysUrl">
-	
+		update sys_url 
+		<set>
+			<if test="urlName !=null">urlName=#{urlName,jdbcType=VARCHAR},</if>
+			<if test="indexStr !=null">indexStr=#{indexStr,jdbcType=VARCHAR},</if>
+			<if test="url !=null">url=#{url,jdbcType=VARCHAR},</if>
+			<if test="urlLev !=null">urlLev=#{urlLev,jdbcType=INTEGER},</if>
+			<if test="pid !=null">pid=#{pid,jdbcType=BIGINT},</if>
+			<if test="pids !=null">pids=#{pids,jdbcType=VARCHAR},</if>
+			<if test="hasChild !=null">hasChild=#{hasChild,jdbcType=INTEGER},</if>
+			<if test="canShow !=null">canShow=#{canShow,jdbcType=INTEGER},</if>
+			<if test="sysId !=null">sysId=#{sysId,jdbcType=BIGINT},</if>
+			<if test="sn !=null">sn=#{sn,jdbcType=INTEGER},</if>
+		</set>
+		where id=#{id,jdbcType=BIGINT}
+		
 	</update>
 	<select id="selectObjById" resultMap="BaseMap">
 		select * from sys_url where id=#{id,jdbcType=BIGINT}
@@ -88,9 +102,45 @@
 				and pids=#{args.pids,jdbcType=VARCHAR}
 			</if>
 		</if>
-		
-		
 	</select>
+	<select id="selectSysUrlList" resultMap="BaseMap">
+		select * from sys_url
+		where id>0
+		<if test="args !=null">
+			<if test="args.id !=null">
+				and id=#{args.id,jdbcType=BIGINT}
+			</if>
+			<if test="args.urlName !=null">
+				and urlName like "%"#{args.urlName,jdbcType=VARCHAR}"%"
+			</if>
+			<if test="args.indexStr !=null">
+				and indexStr like "%"#{args.indexStr,jdbcType=VARCHAR}"%"
+			</if>
+			<if test="args.url !=null">
+				and url like "%"#{args.url,jdbcType=VARCHAR}"%"
+			</if>
+			<if test="args.sysId !=null">
+				and sysId=#{args.sysId,jdbcType=INTEGER}
+			</if>
+			<if test="args.pid !=null">
+				and pid =#{args.pid,jdbcType=BIGINT}
+			</if>
+			<if test="args.pids !=null">
+				and pids=#{args.pids,jdbcType=VARCHAR}
+			</if>
+		</if>
+		order by sysId,sn
+	</select>
+	<select id="selectSysUrlIdByRoleId" resultType="long">
+		select urlId from sys_role_url where roleId=#{id,jdbcType=BIGINT}
+	</select>
+	
+	<delete id="deleteSysRoleUrlByRoleId">
+		delete from sys_role_url where roleId=#{id,jdbcType=BIGINT}
+	</delete>
+	<insert id="insertSysRoleUrl" parameterType="sso.entity.SysUrl">
+		insert into sys_role_url(id,roleId,urlId) values(#{id},#{roleId},#{urlId})
+	</insert>
 </mapper>
 
 
